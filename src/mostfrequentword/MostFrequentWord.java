@@ -14,14 +14,17 @@ import edu.duke.*;
  */
 public class MostFrequentWord {
     private static CharactersInPlay test;
-
+    private static GladLib test2;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       test = new CharactersInPlay();
-       test.tester(); 
+       //test = new CharactersInPlay();
+       //test.tester(); 
         //tester();
+        
+       test2 = new GladLib();
+       test2.makeStory();
        
     }
     private static ArrayList<String> myWords = new ArrayList<>();
