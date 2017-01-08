@@ -13,12 +13,16 @@ import edu.duke.*;
  * @author Виктория
  */
 public class MostFrequentWord {
+    private static CharactersInPlay test;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        tester();
+       test = new CharactersInPlay();
+       test.tester(); 
+        //tester();
+       
     }
     private static ArrayList<String> myWords = new ArrayList<>();
     private static ArrayList<Integer> myFreqs = new ArrayList<>();
