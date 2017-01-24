@@ -16,6 +16,7 @@ public class MostFrequentWord {
     private static CharactersInPlay test;
     private static GladLib test2;
     private static CodonCount test3;
+    private static WordsInFiles test4;
     /**
      * @param args the command line arguments
      */
@@ -26,8 +27,10 @@ public class MostFrequentWord {
         
        //test2 = new GladLib();
        //test2.makeStory();
-        test3 = new CodonCount();
-        test3.test();
+       // test3 = new CodonCount();
+       // test3.test();
+        test4 = new WordsInFiles();
+        test4.addWordsFromFile();
        
     }
     private static ArrayList<String> myWords = new ArrayList<>();
