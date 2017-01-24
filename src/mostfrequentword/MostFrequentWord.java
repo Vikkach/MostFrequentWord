@@ -15,6 +15,7 @@ import edu.duke.*;
 public class MostFrequentWord {
     private static CharactersInPlay test;
     private static GladLib test2;
+    private static CodonCount test3;
     /**
      * @param args the command line arguments
      */
@@ -23,8 +24,10 @@ public class MostFrequentWord {
        //test.tester(); 
        // tester();
         
-       test2 = new GladLib();
-       test2.makeStory();
+       //test2 = new GladLib();
+       //test2.makeStory();
+        test3 = new CodonCount();
+        test3.test();
        
     }
     private static ArrayList<String> myWords = new ArrayList<>();
