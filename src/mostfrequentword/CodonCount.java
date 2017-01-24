@@ -20,7 +20,7 @@ public class CodonCount {
         CodonCount.DNAMap = new HashMap<>();
     }
     
-    public static void buildCodonMap(int start, String dna){
+    private void buildCodonMap(int start, String dna){
         for (int i = start; i < dna.length()-2; i = i + 3){
             String codon = dna.substring(i, i+3);
             if (DNAMap.containsKey(codon)){
@@ -32,7 +32,7 @@ public class CodonCount {
         }
     }
         
-        public static String getMostCommonCodon(){
+        private String getMostCommonCodon(){
             int maxCount = 0;
             String maxCodon = "";
             for (Map.Entry<String, Integer> entry : DNAMap.entrySet()){
@@ -44,14 +44,14 @@ public class CodonCount {
             return maxCodon;
         }
         
-        public static void printCodonCounts(int start, int end){
+        private void printCodonCounts(int start, int end){
             for (Map.Entry<String, Integer> entry : DNAMap.entrySet()){
                 if (entry.getValue() >= start && entry.getValue() <=end){
                     System.out.println(entry.getKey() + " " + entry.getValue());
                 }
             }
         }
-        public static void test(){
+        public void test(){
             FileResource fr = new FileResource();
             String DNA = fr.asString().trim().toUpperCase();
             buildCodonMap(0, DNA);

@@ -16,12 +16,12 @@ import java.util.ArrayList;
  */
 public class CharactersInPlay {
     
-    private static ArrayList<String> characterName;
-    private static ArrayList<Integer> replicasNumber;
+    private ArrayList<String> characterName;
+    private ArrayList<Integer> replicasNumber;
     
     public CharactersInPlay(){
-        CharactersInPlay.characterName = new ArrayList<>();
-        CharactersInPlay.replicasNumber = new ArrayList<>();
+        this.characterName = new ArrayList<>();
+        this.replicasNumber = new ArrayList<>();
     }
     
     public void update(String person){
