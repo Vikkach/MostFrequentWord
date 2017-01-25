@@ -7,6 +7,7 @@ package mostfrequentword;
 
 import java.util.ArrayList;
 import edu.duke.*;
+import java.io.IOException;
 
 /**
  *
@@ -20,7 +21,7 @@ public class MostFrequentWord {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        //test = new CharactersInPlay();
        //test.tester(); 
        // tester();
@@ -30,7 +31,7 @@ public class MostFrequentWord {
        // test3 = new CodonCount();
        // test3.test();
         test4 = new WordsInFiles();
-        test4.addWordsFromFile();
+        test4.buildWordFileMap();
        
     }
     private static ArrayList<String> myWords = new ArrayList<>();

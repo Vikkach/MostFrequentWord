@@ -4,11 +4,14 @@
  */
 package mostfrequentword;
 
-import edu.duke.FileResource;
+import edu.duke.DirectoryResource;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.omg.CosNaming.IstringHelper;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  *
@@ -21,8 +24,9 @@ public class WordsInFiles {
         this.wordsMap =  new HashMap<>();
     }
     
-    public void addWordsFromFile(){
-        String str = "love birds and cats love";
+    private void addWordsFromFile(File f) throws IOException{
+        String str = new String(Files.readAllBytes(f.toPath()));
+        str = str.trim();
         ArrayList<Integer> indexOfSpace = new ArrayList<>();
         for (int i = 0; i < str.trim().length();  i++){
             if (str.charAt(i) == ' '){
@@ -33,8 +37,7 @@ public class WordsInFiles {
         int start;
         int end = 0;
         int sizeOfWordsMap = indexOfSpace.size();
-        String filename = "f1";
-        //String filename = f.getName();
+        String filename = f.getName();
         for (int i = 0; i <= sizeOfWordsMap; i++){
             if (i == 0){
                 end = indexOfSpace.get(i);
@@ -46,7 +49,9 @@ public class WordsInFiles {
                     wordsMap.put(word, arrayFileName); 
                 } else if (wordsMap.containsKey(word)){
                     arrayFileName = wordsMap.get(word);
-                    arrayFileName.add(filename);
+                    if (!arrayFileName.contains(filename)){
+                        arrayFileName.add(filename);
+                    }
                     wordsMap.put(word, arrayFileName);
                 }
             } else if (i > 0 && i < sizeOfWordsMap){
@@ -60,7 +65,9 @@ public class WordsInFiles {
                     wordsMap.put(word, arrayFileName); 
                 } else if (wordsMap.containsKey(word)){
                     arrayFileName = wordsMap.get(word);
-                    arrayFileName.add(filename);
+                    if (!arrayFileName.contains(filename)){
+                        arrayFileName.add(filename);
+                    }
                     wordsMap.put(word, arrayFileName);
                 }
             } else if (i == sizeOfWordsMap){
@@ -74,25 +81,25 @@ public class WordsInFiles {
                     wordsMap.put(word, arrayFileName); 
                 } else if (wordsMap.containsKey(word)){
                     arrayFileName = wordsMap.get(word);
-                    if (arrayFileName.contains(filename)){
+                    if (!arrayFileName.contains(filename)){
                         arrayFileName.add(filename);
-                        wordsMap.put(word, arrayFileName);
                     }
+                    wordsMap.put(word, arrayFileName);
                 }
             }
         }
-        
-       /* for (int i = 0; i < words.size(); i++){
-            String key = words.get(i);
-            ArrayList<String> nameOfFile = new ArrayList<>();
-            if (wordsMap.containsKey(key)){
-                nameOfFile.add(f.getName());
-                wordsMap.put(key, nameOfFile);
-            } else{
-                nameOfFile.add(f.getName());
-                wordsMap.put(key, nameOfFile);
-            }
-        }*/
     }
     
+    public void buildWordFileMap() throws IOException{
+        wordsMap.clear();
+        DirectoryResource dr = new DirectoryResource();
+        for (File f : dr.selectedFiles()){
+            System.out.println(f.getName());
+            addWordsFromFile(f);
+        }
+    }  
+    
+    /*public int maxNumber(){
+        
+    }*/
 }
