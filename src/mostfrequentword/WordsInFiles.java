@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
 /**
  *
@@ -94,12 +95,39 @@ public class WordsInFiles {
         wordsMap.clear();
         DirectoryResource dr = new DirectoryResource();
         for (File f : dr.selectedFiles()){
-            System.out.println(f.getName());
             addWordsFromFile(f);
         }
+        printFilesIn("cats");
     }  
     
-    /*public int maxNumber(){
-        
-    }*/
+    private int maxNumber(){
+        int maxNumber = 0;
+        for (Map.Entry<String, ArrayList<String>> entry : wordsMap.entrySet()){
+            if (entry.getValue().size() > maxNumber){
+                maxNumber = entry.getValue().size();
+            }
+        }
+        return maxNumber;
+    }
+    
+    private ArrayList wordsInNumFiles(int number){
+        ArrayList<String> words = new ArrayList();
+        for (Map.Entry<String, ArrayList<String>> entry : wordsMap.entrySet()){
+            if (entry.getValue().size() == number){
+                words.add(entry.getKey());
+            }
+        }
+        return words;
+    }
+    
+    private void printFilesIn(String word){
+        for (Map.Entry<String, ArrayList<String>> entry : wordsMap.entrySet()){
+            if (word.equals(entry.getKey())){
+                System.out.print(entry.getKey() + ":");
+                for (int i = 0; i < entry.getValue().size(); i++){
+                    System.out.print(" " + entry.getValue().get(i));
+                }
+            }
+        }
+    }
 }
