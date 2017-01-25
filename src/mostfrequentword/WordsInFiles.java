@@ -22,36 +22,77 @@ public class WordsInFiles {
     }
     
     public void addWordsFromFile(){
-        String str = "love birds and cats";
+        String str = "love birds and cats love";
         ArrayList<Integer> indexOfSpace = new ArrayList<>();
-        ArrayList<String> words = new ArrayList<>();
         for (int i = 0; i < str.trim().length();  i++){
             if (str.charAt(i) == ' '){
                 indexOfSpace.add(i);
             }
         }
-        String word = null;
-        int start = 0;
+        String word;
+        int start;
         int end = 0;
         int sizeOfWordsMap = indexOfSpace.size();
+        String filename = "f1";
+        //String filename = f.getName();
         for (int i = 0; i <= sizeOfWordsMap; i++){
             if (i == 0){
                 end = indexOfSpace.get(i);
                 word = str.substring(0, end);
-                words.add(word);
+                ArrayList<String> arrayFileName = new ArrayList<>();
+                if (!wordsMap.containsKey(word)){
+                    arrayFileName.clear();
+                    arrayFileName.add(filename);
+                    wordsMap.put(word, arrayFileName); 
+                } else if (wordsMap.containsKey(word)){
+                    arrayFileName = wordsMap.get(word);
+                    arrayFileName.add(filename);
+                    wordsMap.put(word, arrayFileName);
+                }
             } else if (i > 0 && i < sizeOfWordsMap){
                 start = end + 1;
-                int last = i + 1;
                 end = indexOfSpace.get(i);
                 word = str.substring(start, end);
-                words.add(word);
+                ArrayList<String> arrayFileName = new ArrayList<>();
+                if (!wordsMap.containsKey(word)){
+                    arrayFileName.clear();
+                    arrayFileName.add(filename);
+                    wordsMap.put(word, arrayFileName); 
+                } else if (wordsMap.containsKey(word)){
+                    arrayFileName = wordsMap.get(word);
+                    arrayFileName.add(filename);
+                    wordsMap.put(word, arrayFileName);
+                }
             } else if (i == sizeOfWordsMap){
                 start = end + 1;
                 end = str.length();
                 word = str.substring(start, end);
-                words.add(word);
+                ArrayList<String> arrayFileName = new ArrayList<>();
+                if (!wordsMap.containsKey(word)){
+                    arrayFileName.clear();
+                    arrayFileName.add(filename);
+                    wordsMap.put(word, arrayFileName); 
+                } else if (wordsMap.containsKey(word)){
+                    arrayFileName = wordsMap.get(word);
+                    if (arrayFileName.contains(filename)){
+                        arrayFileName.add(filename);
+                        wordsMap.put(word, arrayFileName);
+                    }
+                }
             }
         }
+        
+       /* for (int i = 0; i < words.size(); i++){
+            String key = words.get(i);
+            ArrayList<String> nameOfFile = new ArrayList<>();
+            if (wordsMap.containsKey(key)){
+                nameOfFile.add(f.getName());
+                wordsMap.put(key, nameOfFile);
+            } else{
+                nameOfFile.add(f.getName());
+                wordsMap.put(key, nameOfFile);
+            }
+        }*/
     }
     
 }
