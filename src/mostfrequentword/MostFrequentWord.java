@@ -18,6 +18,7 @@ public class MostFrequentWord {
     private static GladLib test2;
     private static CodonCount test3;
     private static WordsInFiles test4;
+    private static GladLibMap test5;
     /**
      * @param args the command line arguments
      */
@@ -26,13 +27,14 @@ public class MostFrequentWord {
        //test.tester(); 
        // tester();
         
-       //test2 = new GladLib();
-       //test2.makeStory();
+       test2 = new GladLib();
+       test2.makeStory();
        // test3 = new CodonCount();
        // test3.test();
-        test4 = new WordsInFiles();
-        test4.buildWordFileMap();
-       
+        //test4 = new WordsInFiles();
+        //test4.buildWordFileMap();
+        test5 = new GladLibMap();
+        test5.makeStory();
     }
     private static ArrayList<String> myWords = new ArrayList<>();
     private static ArrayList<Integer> myFreqs = new ArrayList<>();
