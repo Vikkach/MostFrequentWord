@@ -73,8 +73,9 @@ public class CharactersInPlay {
     
     public void tester(){
         //System.out.println(findIndexOfMax() + " " +characterName.get(replicasNumber.indexOf(findIndexOfMax())));
-        charactersWithNumParts(10, 15);
-        //findAllCharacters();
+        //charactersWithNumParts(10, 15);
+        findAllCharacters();
+        System.out.println(characterName.size());
     }
     
 }
